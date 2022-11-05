@@ -1,4 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+
+:root {
+    --border: rgb(255, 255, 255);
+    
+    --g1: rgb(144, 215, 233);
+    --g2: rgb(243, 127, 166);
+    --g3: rgb(253, 216, 53);
+  }
+
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -11,44 +20,6 @@ body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-}
-/* Change color on hover */
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-/* Style the content */
-.content {
-    background-color: #ddd;
-    padding: 10px;
-    height: 200px;
-    /* Should be removed. Only for demonstration */
-}
-/* Style the footer */
-.footer {
-    background-color: #f1f1f1;
-    padding: 10px;
-}
-.navbar-text-color {
-    color: rgb(255, 255, 255);
-}
-.nav {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-}
-li {
-    text-align: center;
-    list-style: none;
-}
-li:not(:last-child) {
-    margin-right: 1em;
-}
-
-.navbar-nav.navbar-center {
-    position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
 }
 
 .main {
@@ -69,10 +40,85 @@ li:not(:last-child) {
     font-size: 26px;
 }
 
+/* Project Card Section */
+
 .project-card {
-    height: 400px;
-    width: 300px;
-    border: 3px solid;
-    display: table;
-    margin: 0 auto;
+    aspect-ratio: 3 / 1.5;
+    border: 0.5vmin solid var(--border);
+    cursor: pointer;
+    position: relative;
+    width: 56vmin;
+    background-color: rgb(46, 46, 46);
 }
+
+.project-card:hover:before {
+    background-position: 100% 100%;
+    transform: scale(1.08, 1.03);
+}
+
+.project-card:hover > .project-card-content {
+    background-position: -10% 0%;
+  }
+
+  .project-card:hover > .card-icon {
+    color: rgb(120, 110, 110); 
+  }
+
+  .project-card:hover > .project-card-content > .project-card-subtitle > .project-card-subtitle-word {  
+    opacity: 1;
+    transform: translateY(0%);
+    transition: opacity 0ms, transform 200ms cubic-bezier(.90, .06, .15, .90);
+  }
+
+.project-card:before {
+    background: linear-gradient(
+        130deg, 
+        transparent 0% 33%, 
+        var(--g1) 70%, 
+        var(--g2) 83.5%, 
+        var(--g3) 100%
+      );
+      background-position: 0% 0%;
+      background-size: 300% 300%;
+      content: "";
+      height: 100%;
+      left: 0px;
+      pointer-events: none;
+      position: absolute;
+      top: 0px;
+      transition: background-position 350ms ease, transform 350ms ease;
+      width: 100%;
+      z-index: 1;
+}
+
+.project-card-content {
+    background-image: radial-gradient(
+      rgba(162, 249, 252, 0.2) 8%, 
+      transparent 8%
+    );
+    background-position: 0% 0%;
+    background-size: 5vmin 5vmin;
+    height: calc(100% - 10vmin);
+    padding: 5vmin;
+    position: relative;
+    transition: background-position 350ms ease;
+    width: calc(100% - 10vmin);
+    z-index: 2;
+  }
+
+.project-card:hover:before {
+    background-position: 100% 100%;
+}
+
+.project-card-title,
+.project-card-subtitle {
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin: 0px;
+}
+
+.project-card-title {
+    font-size: 3vmin;
+  }
+  
